@@ -4,16 +4,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity(name = "tb_userauthentication")
-public class UserAuthentication {  // Renomeado para evitar conflito
+
+
+public enum UserAuthentication {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        BASIC,
+        ADMIN,
+        USER
 
-        private int loggedInUser;
-        private boolean authenticated;
 
 
 }

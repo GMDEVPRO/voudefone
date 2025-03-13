@@ -14,6 +14,10 @@ public class Task {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id")
+        private User user;
+
         private int taskId;
         private String title;
         private String description;
@@ -21,9 +25,9 @@ public class Task {
         @Column(name = "due_date", nullable = false)
         private LocalDateTime dueDate;
 
-        private String status;
 
-        @ManyToOne(fetch = FetchType.LAZY)
+
+        @ManyToOne
         @JoinColumn(name = "task_list_id")
         private TaskList taskList;
 

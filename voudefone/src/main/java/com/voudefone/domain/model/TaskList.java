@@ -19,7 +19,8 @@ public class TaskList {
         @JoinColumn(name = "account_id")
         private Account account;
 
-        @OneToMany(mappedBy = "taskList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+        @OneToMany(mappedBy = "taskList")
         private List<Task> tasks;
 
 

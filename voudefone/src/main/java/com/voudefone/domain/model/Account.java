@@ -1,30 +1,33 @@
 package com.voudefone.domain.model;
-
 import com.voudefone.domain.Authentication.UserAuthentication;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 
 import java.util.List;
-@Getter
-@Setter
-@Entity(name = "tb_account")
-public class Account {
+    @Getter
+    @Setter
+    @Entity(name = "tb_account")
+    public class Account {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String email;
-    private String password;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "authentication_id")
-    private UserAuthentication authentication;  // Usando a nova classe
-
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<TaskList> taskLists;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
 
-}
+        @NotNull(message = "O e-mail não pode ser nulo")
+        private String email;
+
+        @NotNull(message = "A senha não pode ser nula")
+        private String password;
+
+        @Enumerated(EnumType.STRING)
+        private UserAuthentication authentication;
+
+        @OneToMany(mappedBy = "account")
+        private List<TaskList> taskLists;
+
+
+    }
+
